@@ -1,0 +1,252 @@
+.featured-wrap {
+  position: relative;
+  width: 100%;
+  height: 500vh; /* Total height for 5 sections */
+}
+
+.section.pp {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch; /* Stretch to fill height */
+  padding: 0; /* Remove padding to let image fill edge */
+  width: 100%;
+  will-change: transform, opacity;
+}
+
+
+.section.pp:not(:first-child) {
+  margin-top: 0;
+}
+
+.type-div {
+  position: absolute;
+  top: 10%; /* Adjust position to be within right column */
+  left: 10%;
+  overflow: hidden;
+  z-index: 10;
+  will-change: transform;
+}
+
+.label-text {
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  will-change: transform;
+  display: inline-block;
+}
+
+/* Left Column: Image */
+.pp-image-wrapper {
+  position: relative;
+  width: 50%; /* Left half */
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.pp-image-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Removed z-index: 1 to let parent handle stacking context */
+}
+
+/* Right Column: Content */
+.pp-content-div {
+  position: relative;
+  width: 50%; /* Right half */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center content */
+  background-color: #111; /* Dark background for content to match design */
+  color: #fff;
+  z-index: 5;
+  overflow: hidden; /* Keep animations contained */
+}
+
+.pp-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  transform-origin: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pp-image._7 { background-image: url('/images/projects/spyscape.jpg'); }
+.pp-image._3 { background-image: url('/images/projects/le-vermeil.jpg'); }
+.pp-image._4 { background-image: url('/images/projects/chiro-actif.jpg'); }
+.pp-image._8 { background-image: url('/images/projects/northand.jpg'); }
+
+.pp-h-div {
+  position: absolute;
+  /* Centered in right column naturally by flex, but keeping absolute for motion control */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center it initially */
+  z-index: 5;
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  text-align: center;
+}
+
+.pp-h-div.back {
+  z-index: 4;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.heading-1.home {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.heading-1.front.home {
+  -webkit-text-stroke: 1px transparent;
+  color: white;
+}
+
+.no-div {
+  position: absolute;
+  top: 10vh;
+  right: 5vw;
+  overflow: hidden;
+  z-index: 10;
+  will-change: transform;
+}
+
+.no {
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  will-change: transform;
+  display: inline-block;
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.progress-dot.active {
+  background-color: white;
+  transform: scale(1.5);
+}
+
+/* Smooth scroll container */
+.smooth-scroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Animation classes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes scalePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.scale-pulse {
+  animation: scalePulse 2s ease-in-out infinite;
+}
+
+/* Call to Action specific styles needed for RoundCTA */
+.pp-cta-div {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #fff;
+  /* position is dynamically handled by framer-motion now, but defaults kept */
+}
+
+.round-cta-txt-wrap {
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+}
+
+.button-text {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.round-div-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #fff;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .section.pp {
+    flex-direction: column-reverse; /* Content on top or bottom? Standard is often image top, but let's stick to column first. Try column-reverse to have content then image or column for image then content. Let's do just column */
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  .pp-image-wrapper, .pp-content-div {
+    width: 100%;
+    height: 50%;
+  }
+
+  .pp-cta-div {
+    width: 120px;
+    height: 120px;
+  }
+}

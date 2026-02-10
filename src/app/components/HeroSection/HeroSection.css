@@ -1,0 +1,43 @@
+.bg-radial-vignette {
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 1) 120%);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.progress-bar {
+  transition: width 6s linear;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Specific utilities for the sticky layout */
+.hero-sticky-container {
+  height: 100vh;
+  width: 100%;
+}
+
+.hero-background-image {
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out, filter 1.5s ease-out;
+}

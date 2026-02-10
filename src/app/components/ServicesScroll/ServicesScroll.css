@@ -1,0 +1,80 @@
+/* Component-specific styles */
+.services-gradient-overlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+}
+
+.services-gradient-overlay-mobile {
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .services-motion-element {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Fix for sticky section transitions */
+.isolate-stack {
+  isolation: isolate;
+}
+
+.stacking-context {
+  position: relative;
+  z-index: 1;
+}
+
+/* Smooth transition between sticky sections */
+.sticky-section {
+  position: relative;
+}
+
+.sticky-section::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+/* app/components/ServicesScroll/ServicesScroll.css */
+.services-gradient-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+}
+
+.services-gradient-overlay-mobile {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.4) 40%,
+        transparent 100%
+    );
+}
+
+.sticky-section {
+    position: relative;
+}
+
+/* Ensure proper z-index stacking */
+.relative {
+    position: relative;
+}
+
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.z-20 { z-index: 20; }
+.z-40 { z-index: 40; }
+
+/* Animation performance */
+.services-motion-element {
+    will-change: transform, opacity;
+}
