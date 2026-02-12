@@ -2,12 +2,14 @@
 
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useHero } from './HeroState';
 
 interface HeroData {
     id: number;
     image: string;
     cardTitle: string;
+    link?: string;
 }
 
 export function InteractiveHero({
@@ -146,11 +148,11 @@ export function InteractiveHero({
                                         <p className="text-yellow-400 text-[10px] tracking-widest uppercase mb-1">Experience {index + 1}</p>
                                         <h3 className="text-white font-bebas text-2xl tracking-wider leading-none">{item.cardTitle}</h3>
                                     </div>
-                                    <div className={`w-10 h-10 border flex items-center justify-center transition-all duration-500 ${index === activeIndex ? 'bg-yellow-400 border-yellow-400 text-black' : 'border-white/20 text-white'}`}>
+                                    <Link href={item.link || '#'} className={`w-10 h-10 border flex items-center justify-center transition-all duration-500 ${index === activeIndex ? 'bg-yellow-400 border-yellow-400 text-black' : 'border-white/20 text-white'}`}>
                                         <svg className={`w-4 h-4 transform transition-transform ${index === activeIndex ? 'rotate-45' : 'group-hover:rotate-45'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
                                         </svg>
-                                    </div>
+                                    </Link>
                                 </div>
                             </div>
                         ))}

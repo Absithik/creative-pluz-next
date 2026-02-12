@@ -4,6 +4,7 @@ export interface HeroItem {
     headline: string;
     description: string;
     image: string;
+    link?: string;
 }
 
 export interface HeroSectionProps {
