@@ -32,6 +32,8 @@ interface ProjectGridProps {
 
 export default function ProjectGrid({ projects: initialProjects, layoutSlots }: ProjectGridProps) {
     const { filter } = useProjectsFilter();
+    console.log('ProjectGrid: Current Filter:', filter);
+    console.log('ProjectGrid: Layout Slots:', layoutSlots?.length);
     const { projects: paginatedProjects, loading, hasMore, loadMore } = useProjectsPagination(filter);
     const observerTarget = useRef(null);
 

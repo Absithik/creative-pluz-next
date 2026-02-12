@@ -118,6 +118,7 @@ const nextConfig = {
                         value: [
                             "default-src 'self'",
                             "img-src 'self' data: blob: https://images.unsplash.com https://picsum.photos https://res.cloudinary.com https://i.pravatar.cc https://creativepluz.com https://www.creativepluz.com",
+                            "media-src 'self' data:",
                             "style-src 'self' 'unsafe-inline'",
                             "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://upload-widget.cloudinary.com",
                             "frame-src 'self' https://upload-widget.cloudinary.com",

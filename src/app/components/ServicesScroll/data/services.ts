@@ -5,8 +5,8 @@ export const SERVICES_DATA: ServiceItem[] = [
         id: 'branding',
         title: "Logo & Branding",
         description: "Your brand's visual anchor. We craft memorable logos and comprehensive identity systems that define your market presence from day one.",
-        bgImage: "/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_12.png",
-        smallImage: "/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_12.png"
+        bgImage: "/assets/images/service/OurLogoDesigns/LOGO_33.png",
+        smallImage: "/assets/images/service/OurLogoDesigns/LOGO_33.png"
     },
     {
         id: 'packaging',

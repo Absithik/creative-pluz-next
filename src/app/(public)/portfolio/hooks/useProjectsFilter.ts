@@ -11,8 +11,12 @@ export function useProjectsFilter() {
     // Initialize from URL params
     useEffect(() => {
         const category = searchParams.get('category')
+        console.log('useProjectsFilter: URL params changed:', category);
         if (category) {
             setFilter(category)
+        } else {
+            console.log('useProjectsFilter: Resetting to All');
+            setFilter('All')
         }
     }, [searchParams])
 

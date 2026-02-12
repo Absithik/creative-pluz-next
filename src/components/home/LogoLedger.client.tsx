@@ -45,7 +45,7 @@ const LogoMarquee = ({ reverse = false, speed = 60, logos = [] }: { reverse?: bo
                                 src={logo.src}
                                 alt={`Logo of ${logo.name}`}
                                 fill
-                                className="object-contain p-4" // p-4 provides safe padding inside the white card
+                                className="object-contain" // p-4 provides safe padding inside the white card
                             />
                         ) : (
                             <span className="text-black font-display font-black uppercase text-xl md:text-2xl opacity-20">
@@ -74,7 +74,7 @@ export const LogoLedger = () => {
             </div>
 
             <div className="space-y-4 md:space-y-6">
-                <LogoMarquee logos={clientLogos.slice(0, 20)} speed={35} />
+                <LogoMarquee logos={clientLogos.slice(0, 20)} speed={45} />
                 <LogoMarquee logos={clientLogos.slice(10)} speed={35} reverse={true} />
             </div>
         </section>

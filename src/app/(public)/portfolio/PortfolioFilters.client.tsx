@@ -27,7 +27,7 @@ export default function PortfolioFilters({ categories }: PortfolioFiltersProps) 
                             {filter === cat && (
                                 <motion.div
                                     layoutId="filterUnderline"
-                                    className="absolute -bottom-8 left-0 w-full h-1 bg-brand-primary"
+                                    className="absolute -bottom-2 left-0 w-full h-1 bg-brand-primary" // Fixed overlap
                                     aria-hidden="true"
                                 />
                             )}

@@ -120,12 +120,7 @@ export function InteractiveHero({
                         {items.map((item, index) => (
                             <div
                                 key={item.id}
-                                onClick={() => {
-                                    // Scroll to the exact section for this card
-                                    const scrollTarget = (containerRef.current?.offsetTop || 0) + (index * window.innerHeight);
-                                    window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
-                                }}
-                                className={`absolute right-0 cursor-pointer overflow-hidden transition-all duration-700 w-full max-w-[320px] h-48 group
+                                className={`card-wrapper absolute right-0 overflow-hidden transition-all duration-700 w-full max-w-[320px] h-48 group
                                     ${index === activeIndex
                                         ? 'ring-2 ring-yellow-400/50 shadow-[0_0_50px_rgba(255,255,0,0.1)] scale-100 opacity-100 grayscale-0'
                                         : 'opacity-40 grayscale scale-90 hover:opacity-100 hover:grayscale-0 hover:scale-95'
@@ -135,20 +130,34 @@ export function InteractiveHero({
                                     transform: 'translateY(-50%)'
                                 }}
                             >
-                                <Image
-                                    src={item.image}
-                                    alt={item.cardTitle}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-500 ${index === activeIndex ? 'opacity-100' : 'opacity-60'}`} />
+                                {/* Clickable Background Layer */}
+                                <div
+                                    className="absolute inset-0 cursor-pointer z-0"
+                                    onClick={() => {
+                                        // Scroll to the exact section for this card
+                                        const scrollTarget = (containerRef.current?.offsetTop || 0) + (index * window.innerHeight);
+                                        window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+                                    }}
+                                >
+                                    <Image
+                                        src={item.image}
+                                        alt={item.cardTitle}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-500 ${index === activeIndex ? 'opacity-100' : 'opacity-60'}`} />
+                                </div>
 
-                                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                                {/* Content Layer - pointer events pass through to background unless strictly on interactive elements */}
+                                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end z-10 pointer-events-none">
                                     <div>
                                         <p className="text-yellow-400 text-[10px] tracking-widest uppercase mb-1">Experience {index + 1}</p>
                                         <h3 className="text-white font-bebas text-2xl tracking-wider leading-none">{item.cardTitle}</h3>
                                     </div>
-                                    <Link href={item.link || '#'} className={`w-10 h-10 border flex items-center justify-center transition-all duration-500 ${index === activeIndex ? 'bg-yellow-400 border-yellow-400 text-black' : 'border-white/20 text-white'}`}>
+                                    <Link
+                                        href={item.link || '#'}
+                                        className={`pointer-events-auto w-10 h-10 border flex items-center justify-center transition-all duration-500 ${index === activeIndex ? 'bg-yellow-400 border-yellow-400 text-black' : 'border-white/20 text-white'}`}
+                                    >
                                         <svg className={`w-4 h-4 transform transition-transform ${index === activeIndex ? 'rotate-45' : 'group-hover:rotate-45'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
                                         </svg>
@@ -161,7 +170,7 @@ export function InteractiveHero({
             </div>
 
             {/* Mobile Indicator Pebbles (Interactive) */}
-            <div className="lg:hidden fixed bottom-8 left-6 right-6 z-30 flex justify-start items-center space-x-8 overflow-x-auto no-scrollbar pb-4 pointer-events-auto">
+            {/* <div className="lg:hidden fixed bottom-8 left-6 right-6 z-30 flex justify-start items-center space-x-8 overflow-x-auto no-scrollbar pb-4 pointer-events-auto">
                 {items.map((item, i) => (
                     <button
                         key={item.id}
@@ -179,7 +188,7 @@ export function InteractiveHero({
                             }`}
                     />
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }

@@ -50,6 +50,7 @@ async function getInitialData() {
                 select: 'title slug category year excerpt coverImage size featured featuredOrder clientName duration status'
             })
             .lean()
+        console.log(slots);
 
         // 2. Fetch one batch of projects just to extract Categories? 
         // Or fetch distinct categories efficiently? 

@@ -172,14 +172,14 @@ const Navbar: React.FC = () => {
                             {/* Secondary Section */}
                             <div className="flex-1 bg-white/[0.02] p-6 md:p-12 flex flex-col justify-between">
                                 <div>
-                                    <p className="text-[10px] font-black text-brand-primary uppercase tracking-[0.4em] mb-8">Expertise</p>
+                                    <p className="text-[12px] font-black text-brand-primary uppercase tracking-[0.4em] mb-8">Expertise</p>
                                     <div className="grid grid-cols-2 gap-y-6 gap-x-4">
                                         {serviceLinks.map((service, i) => (
                                             <Link
                                                 key={service.name}
                                                 href={service.path}
                                                 onClick={() => setIsOpen(false)}
-                                                className="text-[10px] md:text-xs font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest"
+                                                className="text-[11px] md:text-xs font-bold text-white hover:text-brand-primary transition-colors uppercase tracking-widest"
                                             >
                                                 {service.name}
                                             </Link>
@@ -187,11 +187,6 @@ const Navbar: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="mt-12 lg:mt-0 pt-8 border-t border-white/5 flex flex-col gap-6">
-                                    <div className="flex gap-8">
-                                        {['IG', 'LN', 'TW'].map((social) => (
-                                            <a key={social} href="#" className="text-xs font-black text-white hover:text-brand-primary transition-colors">{social}</a>
-                                        ))}
-                                    </div>
                                     <div className="space-y-1">
                                         <p className="text-[10px] text-white/30 uppercase font-bold tracking-tighter">Inquiries</p>
                                         <p className="text-sm font-medium text-white">hello@creativepluz.com</p>
