@@ -8,7 +8,7 @@ import BentoGrid from './Gallery/BentoGrid';
 
 import dynamic from 'next/dynamic';
 
-const DomeGallery = dynamic(() => import('./DomeGallery/DomeGallery'));
+import DomeGalleryWrapper from './DomeGallery/DomeGalleryWrapper';
 const VisitingCardShowcase = dynamic(() => import('./visitingCard'));
 
 import { SITE_URL } from '@/lib/taxonomy';
@@ -95,7 +95,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative h-[80vh] w-full select-none cursor-grab active:cursor-grabbing">
-                    <DomeGallery
+                    <DomeGalleryWrapper
                         fit={0.8}
                         minRadius={600}
                         maxVerticalRotationDeg={0}

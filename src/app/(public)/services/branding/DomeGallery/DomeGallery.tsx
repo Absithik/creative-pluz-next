@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
 import './DomeGallery.css';
+import Image from 'next/image';
 
 interface ImageData {
     src: string;
@@ -31,56 +32,56 @@ interface DomeGalleryProps {
 
 const DEFAULT_IMAGES: ImageData[] = [
     {
-        src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_01.png',
+        src: "/assets/images/service/OurLogoDesigns/LOGO_1.png",
         alt: 'Abstract art'
     },
     {
-        src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_02.png',
+        src: "/assets/images/service/OurLogoDesigns/LOGO_2.png",
         alt: 'Modern sculpture'
     },
     {
-        src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_03.png',
+        src: "/assets/images/service/OurLogoDesigns/LOGO_3.png",
         alt: 'Digital artwork'
     },
     {
-        src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_04.png',
+        src: "/assets/images/service/OurLogoDesigns/LOGO_4.png",
         alt: 'Contemporary art'
     },
     {
-        src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_05.png',
+        src: "/assets/images/service/OurLogoDesigns/LOGO_5.png",
         alt: 'Geometric pattern'
     },
     {
-        src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_06.png',
+        src: "/assets/images/service/OurLogoDesigns/LOGO_6.png",
         alt: 'Textured surface'
     },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_07.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_08.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_09.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_10.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_11.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_12.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_13.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_14.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_15.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_16.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_17.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_18.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_19.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_20.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_21.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_22.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_2.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_24.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_25.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_26.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_27.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_28.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_29.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_30.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_31.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_32.png', alt: 'Social media image' },
-    { src: '/assets/images/service/OurLogoDesigns/Creative Pluz Our Logo 500 x 500.png_33.png', alt: 'Social media image' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_7.png", alt: 'Social_1' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_8.png", alt: 'Social_2' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_9.png", alt: 'Social_3' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_10.png", alt: 'Social_4' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_11.png", alt: 'Social_5' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_12.png", alt: 'Social_6' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_13.png", alt: 'Social_7' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_14.png", alt: 'Social_8' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_15.png", alt: 'Social_9' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_16.png", alt: 'Social_10' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_17.png", alt: 'Social_11' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_18.png", alt: 'Social_12' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_19.png", alt: 'Social_13' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_20.png", alt: 'Social_14' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_21.png", alt: 'Social_15' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_22.png", alt: 'Social_16' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_34.png", alt: 'Social_17' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_24.png", alt: 'Social_18' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_25.png", alt: 'Social_19' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_26.png", alt: 'Social_20' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_27.png", alt: 'Social_21' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_28.png", alt: 'Social_22' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_29.png", alt: 'Social_23' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_30.png", alt: 'Social_24' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_31.png", alt: 'Social_25' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_32.png", alt: 'Social_26' },
+    { src: "/assets/images/service/OurLogoDesigns/LOGO_33.png", alt: 'Social_27' },
 
 
 
@@ -127,6 +128,7 @@ function buildItems(pool: (string | ImageData)[], seg: number) {
     });
 
     const usedImages: ImageData[] = Array.from({ length: totalSlots }, (_, i) => normalizedImages[i % normalizedImages.length]);
+    console.log(usedImages);
 
     for (let i = 1; i < usedImages.length; i++) {
         if (usedImages[i].src === usedImages[i - 1].src) {

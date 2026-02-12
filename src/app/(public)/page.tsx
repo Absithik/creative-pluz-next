@@ -118,7 +118,7 @@ export default function HomePage() {
                 </p>
             </section>
 
-            {/* Client Islands Implementation */}
+
             <HeroSection />
             {/*  <Hero /> */}
             <Marquee />

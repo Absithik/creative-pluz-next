@@ -135,19 +135,19 @@ const FlexBannerPage = () => {
                                         {
                                             title: 'Large Format Hoardings',
                                             description: 'Maximize your brand visibility with our high-durability outdoor flex banners.',
-                                            image: '/assets/images/service/BANNERS/18.jpeg',
+                                            image: '/assets/images/service/BANNERS/C_PLUS 970 x 600_007.png',
                                             case: '01'
                                         },
                                         {
                                             title: 'Exhibition Backdrops',
                                             description: 'Professional high-definition prints for trade shows and corporate events.',
-                                            image: '/assets/images/service/BANNERS/19.jpeg',
+                                            image: '/assets/images/service/BANNERS/C_PLUS 970 x 600_003.png',
                                             case: '02'
                                         },
                                         {
                                             title: 'Workspace Branding',
                                             description: 'Custom vinyl graphics and display solutions for modern offices.',
-                                            image: '/assets/images/service/BANNERS/20.jpeg',
+                                            image: '/assets/images/service/BANNERS/C_PLUS 970 x 600_005.png',
                                             case: '03'
                                         }
                                     ].map((item, i) => (

@@ -67,7 +67,7 @@ export function InteractiveHero({
     };
 
     return (
-        <section
+        <div
             ref={containerRef}
             suppressHydrationWarning
             className="relative w-full bg-black h-[100dvh] lg:h-[var(--hero-height)]"
@@ -178,6 +178,6 @@ export function InteractiveHero({
                     />
                 ))}
             </div>
-        </section>
+        </div>
     );
 }
