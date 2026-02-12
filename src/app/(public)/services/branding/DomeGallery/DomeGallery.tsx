@@ -165,10 +165,10 @@ export default function DomeGallery({
     maxRadius = Infinity,
     padFactor = 0.25,
     overlayBlurColor = '#060010',
-    maxVerticalRotationDeg = DEFAULTS.maxVerticalRotationDeg,
-    dragSensitivity = DEFAULTS.dragSensitivity,
-    enlargeTransitionMs = DEFAULTS.enlargeTransitionMs,
-    segments = DEFAULTS.segments,
+    maxVerticalRotationDeg = 5, // You might want to access DEFAULTS.maxVerticalRotationDeg if defined
+    dragSensitivity = 20,
+    enlargeTransitionMs = 300,
+    segments = 35,
     dragDampening = 2,
     openedImageWidth = '350px',
     openedImageHeight = '350px',
@@ -347,7 +347,6 @@ export default function DomeGallery({
         },
         [dragDampening, maxVerticalRotationDeg, stopInertia, applyTransform]
     );
-
     useGesture(
         {
             onDragStart: ({ event }) => {
@@ -362,40 +361,62 @@ export default function DomeGallery({
             onDrag: ({ event, last, velocity = [0, 0], direction = [0, 0], movement }) => {
                 if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
                 const evt = event as any;
+
+                // DETECT TOUCH
+                const isTouch = evt.pointerType === 'touch' || evt.type.startsWith('touch');
+
                 const dxTotal = evt.clientX - startPosRef.current.x;
                 const dyTotal = evt.clientY - startPosRef.current.y;
+
                 if (!movedRef.current) {
                     const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
                     if (dist2 > 16) movedRef.current = true;
                 }
-                const nextX = clamp(
-                    startRotRef.current.x - dyTotal / dragSensitivity,
-                    -maxVerticalRotationDeg,
-                    maxVerticalRotationDeg
-                );
+
+                // LOGIC CHANGE: 
+                // If touch, lock X-rotation (vertical movement) so user can scroll page easily.
+                // We use startRotRef.current.x (no change) if it's touch, otherwise we calculate rotation.
+                const nextX = isTouch
+                    ? startRotRef.current.x
+                    : clamp(
+                        startRotRef.current.x - dyTotal / dragSensitivity,
+                        -maxVerticalRotationDeg,
+                        maxVerticalRotationDeg
+                    );
+
                 const nextY = wrapAngleSigned(startRotRef.current.y + dxTotal / dragSensitivity);
+
                 if (rotationRef.current.x !== nextX || rotationRef.current.y !== nextY) {
                     rotationRef.current = { x: nextX, y: nextY };
                     applyTransform(nextX, nextY);
                 }
+
                 if (last) {
                     draggingRef.current = false;
                     let [vMagX, vMagY] = velocity;
                     const [dirX, dirY] = direction;
                     let vx = vMagX * dirX;
                     let vy = vMagY * dirY;
+
                     if (Math.abs(vx) < 0.001 && Math.abs(vy) < 0.001 && Array.isArray(movement)) {
                         const [mx, my] = movement;
                         vx = clamp((mx / dragSensitivity) * 0.02, -1.2, 1.2);
                         vy = clamp((my / dragSensitivity) * 0.02, -1.2, 1.2);
                     }
+
+                    // If touch, kill vertical inertia so it doesn't drift after scrolling
+                    if (isTouch) vy = 0;
+
                     if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005) startInertia(vx, vy);
                     if (movedRef.current) lastDragEndAt.current = performance.now();
                     movedRef.current = false;
                 }
             }
         },
-        { target: mainRef as any, eventOptions: { passive: true } }
+        {
+            target: mainRef as any,
+            eventOptions: { passive: true } // Passive true is ESSENTIAL for scrolling
+        }
     );
 
     useEffect(() => {
@@ -655,19 +676,16 @@ export default function DomeGallery({
                 ['--image-filter' as any]: grayscale ? 'grayscale(1)' : 'none'
             }}
         >
-            <main ref={mainRef} className="sphere-main">
+            {/* ADDED INLINE STYLE HERE FOR SAFETY */}
+            <main ref={mainRef} className="sphere-main" style={{ touchAction: 'pan-y' }}>
                 <div className="stage">
                     <div ref={sphereRef} className="sphere">
+                        {/* ... [Keep items mapping] ... */}
                         {items.map((it, i) => (
                             <div
                                 key={`${it.x},${it.y},${i}`}
                                 className="item"
-                                data-src={it.src}
-                                data-offset-x={it.x}
-                                data-offset-y={it.y}
-                                data-size-x={it.sizeX}
-                                data-size-y={it.sizeY}
-                                suppressHydrationWarning
+                                // ... data attributes ...
                                 style={{
                                     ['--offset-x' as any]: it.x,
                                     ['--offset-y' as any]: it.y,
@@ -682,9 +700,8 @@ export default function DomeGallery({
                                     aria-label={it.alt || 'Open image'}
                                     onClick={onTileClick}
                                     onPointerUp={onTilePointerUp}
-                                    suppressHydrationWarning
                                 >
-                                    <img src={it.src} draggable={false} alt={it.alt} suppressHydrationWarning />
+                                    <img src={it.src} draggable={false} alt={it.alt} />
                                 </div>
                             </div>
                         ))}
