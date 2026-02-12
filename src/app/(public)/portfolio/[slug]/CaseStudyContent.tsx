@@ -43,7 +43,7 @@ export default function CaseStudyContent({ project }: CaseStudyContentProps) {
                                 <h3 className="text-xs font-black uppercase tracking-widest text-brand-primary mb-6 flex items-center gap-3">
                                     <Target size={16} /> The Challenge
                                 </h3>
-                                <p className="text-2xl md:text-4xl font-display font-medium text-slate-300 leading-tight">
+                                <p className="text-lg md:text-xl font-display font-medium text-slate-300 leading-tight">
                                     {project.challenge}
                                 </p>
                             </div>

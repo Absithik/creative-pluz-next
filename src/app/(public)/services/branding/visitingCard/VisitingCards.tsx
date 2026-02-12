@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useAnimation } from "framer-motion";
-import { Star, Smile, X } from "lucide-react";
+import { Star, Smile } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -173,27 +173,38 @@ function CardModal({
             <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                onClick={(e) => e.stopPropagation()}
-                className="relative w-full h-full flex items-center justify-center"
+                className="relative w-full h-full flex items-center justify-center p-4 md:p-10"
             >
-                <button
-                    onClick={onClose}
-                    className="absolute top-5 right-5 bg-white rounded-full p-2 z-50"
+                <div
+                    className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+                    onClick={(e) => e.stopPropagation()}
                 >
-                    <X />
-                </button>
-
-                {card.img && (
-                    <div className="relative w-full h-full">
-                        <Image
-                            src={card.img}
-                            alt={card.company}
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
-                )}
+                    {card.img ? (
+                        <div className="relative w-full h-[60vh] md:h-[80vh]">
+                            <Image
+                                src={card.img}
+                                alt={card.company}
+                                fill
+                                className="object-contain bg-black/5"
+                                priority
+                            />
+                        </div>
+                    ) : (
+                        <div className="flex flex-col items-center justify-center h-full p-8 md:p-16 text-center space-y-6">
+                            <div className="w-16 h-16 rounded-full bg-zinc-100 flex items-center justify-center mb-4">
+                                {card.layout === "minimal" ? (
+                                    <Star className="w-8 h-8 text-zinc-400" />
+                                ) : (
+                                    <Smile className="w-8 h-8 text-zinc-400" />
+                                )}
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-zinc-900">{card.company}</h2>
+                            <p className="text-xl md:text-2xl text-zinc-500 font-medium">{card.role}</p>
+                            <div className="w-20 h-1 bg-zinc-200 rounded-full my-6"></div>
+                            <p className="text-lg text-zinc-600 max-w-lg italic">"{card.slogan}"</p>
+                        </div>
+                    )}
+                </div>
             </motion.div>
         </div>
     );

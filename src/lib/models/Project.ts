@@ -46,7 +46,21 @@ const ProjectSchema = new Schema({
     category: {
         type: String,
         required: true,
-        enum: ['Branding', 'Social Media', 'Print', 'Photography', 'Package Design', 'Corporate Display']
+        enum: [
+            'Branding',
+            'Social Media',
+            'Print',
+            'Photography',
+            'Package Design',
+            'Corporate Display',
+            'Logo Design',
+            'Product Package Designing',
+            'Social Media Post',
+            'Banner Designs',
+            'Brochure',
+            'Print Advertising',
+            'Website Development'
+        ]
     },
     subCategory: { type: String, trim: true },
 

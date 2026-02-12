@@ -16,7 +16,21 @@ const projectSchema = z.object({
         .min(1, 'Slug is required')
         .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug must be lowercase with hyphens'),
     excerpt: z.string().min(1, 'Excerpt is required').max(200, 'Excerpt must be 200 characters or less'),
-    category: z.enum(['Branding', 'Social Media', 'Print', 'Photography', 'Package Design', 'Corporate Display', 'Logo Design']),
+    category: z.enum([
+        'Branding',
+        'Social Media',
+        'Print',
+        'Photography',
+        'Package Design',
+        'Corporate Display',
+        'Logo Design',
+        'Product Package Designing',
+        'Social Media Post',
+        'Banner Designs',
+        'Brochure',
+        'Print Advertising',
+        'Website Development'
+    ]),
     subCategory: z.string().optional(),
     featured: z.boolean().default(false),
     featuredOrder: z.number().min(0).default(0),
@@ -567,6 +581,12 @@ export default function ProjectForm({ formData, onChange, onSubmit, isSubmitting
                                             <option value="Package Design">Package Design</option>
                                             <option value="Corporate Display">Corporate Display</option>
                                             <option value="Logo Design">Logo Design</option>
+                                            <option value="Product Package Designing">Product Package Designing</option>
+                                            <option value="Social Media Post">Social Media Post</option>
+                                            <option value="Banner Designs">Banner Designs</option>
+                                            <option value="Brochure">Brochure</option>
+                                            <option value="Print Advertising">Print Advertising</option>
+                                            <option value="Website Development">Website Development</option>
                                         </select>
                                     </div>
                                     <div>

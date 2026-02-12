@@ -69,14 +69,8 @@ export default function AddNewProjectPage() {
             console.error('❌ Error creating project:', error)
             const errorMessage = error instanceof Error ? error.message : 'Failed to create project'
 
-            // Map common errors to short 3-4 word messages
-            let shortMessage = 'Error: Failed to Save'
-            if (errorMessage.includes('Slug already exists')) shortMessage = 'Error: Duplicate Slug'
-            else if (errorMessage.includes('Missing required fields')) shortMessage = 'Error: Missing Fields'
-            else if (errorMessage.includes('Cover image is required')) shortMessage = 'Error: Image Required'
-            else if (errorMessage.includes('Unauthorized')) shortMessage = 'Error: Unauthorized Access'
-
-            toast.error(shortMessage)
+            // Show the specific error message from backend
+            toast.error(errorMessage)
         } finally {
             setIsSubmitting(false)
         }

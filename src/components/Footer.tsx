@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+const logoImage = '/assets/images/service/creative_logo.png'
 import {
     Mail, Phone, MapPin,
     Facebook, Instagram, Linkedin, Twitter,
@@ -93,16 +95,15 @@ export default function Footer() {
 
                         {/* Column 1: Brand Info */}
                         <div className="lg:col-span-4 space-y-6">
-                            <Link href="/" className="flex items-center space-x-3 group w-fit">
-                                <div
-                                    className="w-10 h-10 flex items-center justify-center text-black font-black text-xl rounded-lg shadow-lg transition-transform group-hover:scale-105"
-                                    style={{ backgroundColor: BRAND_COLOR }}
-                                >
-                                    CP
-                                </div>
-                                <div>
-                                    <span className="font-bold text-xl tracking-tight block text-white">Creative<span style={{ color: BRAND_COLOR }}>Pluz</span></span>
-                                    <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Design Studio</span>
+                            <Link href="/" className="group relative z-50 flex items-center">
+                                <div className="relative w-[150px] h-[70px]">
+                                    <Image
+                                        src={logoImage}
+                                        alt="CreativePluz Logo"
+                                        fill
+                                        className="object-contain object-left transition-transform duration-300 group-hover:scale-105"
+                                        priority
+                                    />
                                 </div>
                             </Link>
                             <p className="text-zinc-400 leading-relaxed text-sm max-w-sm">
